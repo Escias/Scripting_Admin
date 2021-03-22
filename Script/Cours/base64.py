@@ -1,3 +1,6 @@
+import string
+
+
 def string_to_list(str):
     '''
     Convert string to list
@@ -36,7 +39,7 @@ def to_binary(li_ascii):
     return li
 
 
-def frame_list(li_binary):
+def frame_list(li_binary,n):
     '''
     Crop each element of list to 8 position
     :param li_binary: list of binary
@@ -44,7 +47,7 @@ def frame_list(li_binary):
     '''
     li = []
     for elem in li_binary:
-        li.append(elem.zfill(8))
+        li.append(elem.zfill(n))
     print(li)
     return li
 
@@ -73,7 +76,7 @@ def bloc(srt, n):
     return li
 
 
-def last_bloc(li_bloc):
+def last_bloc(li_bloc, n):
     '''
     Crop each element of list to 6 position
     :param li_bloc: list of rearranged string binary
@@ -81,8 +84,8 @@ def last_bloc(li_bloc):
     '''
     li = []
     for elem in li_bloc:
-        while len(elem) < 6:
-            elem = elem.ljust(6, '0')
+        while len(elem) < n:
+            elem = elem.ljust(n, '0')
         li.append(elem)
     print(li)
     return li
@@ -108,9 +111,10 @@ def to_base64(li_decimal):
     :return: list of element encoded in base 64
     '''
     li = []
+    table64 = getTable64()
     for elem in li_decimal:
         # letter begin at 65 in ASCII list
-        li.append(chr(elem+65))
+        li.append(table64[elem])
     print(li)
     return li
 
@@ -125,3 +129,14 @@ def multiple_4(str64):
         str64 += '='
     print(str64)
     return str64
+
+
+def getTable64():
+    table64 = {}
+    uppercase_letters = string.ascii_uppercase
+    lowercase_letters = string.ascii_lowercase
+    numbers = string.digits
+    characters = uppercase_letters + lowercase_letters + numbers + "+/"
+    for i in range(len(characters)):
+        table64[i] = characters[i]
+    return table64
