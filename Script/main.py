@@ -7,7 +7,9 @@ def main():
 
 
 if __name__ == '__main__':
-    to_list = string_to_list('ABCDE')
+    print('Enter a string :')
+    srt = input()
+    to_list = string_to_list(srt)
     list_ascii = to_ascii(to_list)
     list_binary = to_binary(list_ascii)
     frame = frame_list(list_binary)

@@ -1,6 +1,3 @@
-import binascii
-
-
 def string_to_list(str):
     '''
     Convert string to list
