@@ -2,8 +2,8 @@ from Script.Cours.base64 import string_to_list, to_ascii, to_binary, frame_list,
     to_decimal, to_base64, multiple_4
 
 
-def main(li):
-    string_to_list(li)
+def main():
+    pass
 
 
 if __name__ == '__main__':
