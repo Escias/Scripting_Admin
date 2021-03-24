@@ -47,12 +47,17 @@ def get_network_info():
                'network_bytes_receive': psutil.net_io_counters(pernic=False, nowrap=True).bytes_recv,
                'network_packets_sent': psutil.net_io_counters(pernic=False, nowrap=True).packets_sent,
                'network_packets_receive': psutil.net_io_counters(pernic=False, nowrap=True).packets_recv}
+
     return network
 
 
 def get_sensors_info():
-    sensor = {'sensor_battery': psutil.sensors_battery().percent}
-    return sensor
+    try:
+        sensor = ""
+        sensor = {'sensor_battery': psutil.sensors_battery().percent}
+    except (AttributeError, TypeError):
+        print('[WARN] User has no battery !')
+        return sensor
 
 
 def get_system_info():
