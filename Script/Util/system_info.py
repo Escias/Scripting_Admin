@@ -68,7 +68,6 @@ def get_sensors_info():
         return sensor
 
 
-
 def get_system_info():
     '''
     Get system information
