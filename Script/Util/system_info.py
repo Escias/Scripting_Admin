@@ -3,6 +3,8 @@ import datetime
 import socket
 from getmac import get_mac_address as gma
 
+from Script.Util.database import send_info_to_DB
+
 
 def get_ip_client():
     '''
