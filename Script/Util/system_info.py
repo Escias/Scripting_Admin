@@ -74,7 +74,7 @@ def get_sensors_info():
         sensor = {'sensor_battery': psutil.sensors_battery().percent}
     except (AttributeError, TypeError):
         print('[WARN] User has no battery !')
-        return sensor
+    return sensor
 
 
 def get_system_info():
