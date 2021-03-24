@@ -1,7 +1,6 @@
 import psutil
 import datetime
 import platform
-import socket
 from getmac import get_mac_address as gma
 
 
@@ -59,7 +58,9 @@ def get_network_info():
     network = {'network_bytes_sent': psutil.net_io_counters(pernic=False, nowrap=True).bytes_sent,
                'network_bytes_receive': psutil.net_io_counters(pernic=False, nowrap=True).bytes_recv,
                'network_packets_sent': psutil.net_io_counters(pernic=False, nowrap=True).packets_sent,
-               'network_packets_receive': psutil.net_io_counters(pernic=False, nowrap=True).packets_recv}
+               'network_packets_receive': psutil.net_io_counters(pernic=False, nowrap=True).packets_recv,
+               'network_in_dropped packed': psutil.net_io_counters(pernic=False, nowrap=True).dropin,
+               'network_out_dropped packed': psutil.net_io_counters(pernic=False, nowrap=True).dropout}
 
     return network
 

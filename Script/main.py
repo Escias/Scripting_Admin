@@ -1,5 +1,5 @@
 from Script.Util.system_info import get_cpu_info, get_ram_info, get_disk_info, get_sensors_info, get_network_info, \
-    get_system_info, get_ip_client, get_system_os
+    get_system_info, get_ip_client
 
 
 def main():
@@ -14,8 +14,6 @@ def main():
     network_info = get_network_info()
     sensors_info = get_sensors_info()
     system_info = get_system_info()
-    system_os = get_system_os()
-
     print(ip_client)
     for value in cpu_info:
         print('{} : {}'.format(value, cpu_info[value]))
@@ -29,7 +27,6 @@ def main():
         print('{} : {}'.format(value, sensors_info[value]))
     for value in system_info:
         print('{} : {}'.format(value, system_info[value]))
-    print(system_os)
 
 
 if __name__ == '__main__':
