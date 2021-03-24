@@ -38,19 +38,20 @@ def get_disk_info():
 
     :return:
     '''
-    disk = {'disk_partitions': psutil.disk_partitions(),
-            'disk_usage': psutil.disk_usage('/').percent}
+    disk = {'disk_usage': psutil.disk_usage('/').percent}
     return disk
 
 
 def get_network_info():
-    network = {'network_io_counter': psutil.net_io_counters(pernic=False, nowrap=True),
-               'network_address': psutil.net_if_addrs()}
+    network = {'network_bytes_sent': psutil.net_io_counters(pernic=False, nowrap=True).bytes_sent,
+               'network_bytes_receive': psutil.net_io_counters(pernic=False, nowrap=True).bytes_recv,
+               'network_packets_sent': psutil.net_io_counters(pernic=False, nowrap=True).packets_sent,
+               'network_packets_receive': psutil.net_io_counters(pernic=False, nowrap=True).packets_recv}
     return network
 
 
 def get_sensors_info():
-    sensor = {'sensor_temp': psutil.sensors_battery()}
+    sensor = {'sensor_battery': psutil.sensors_battery().percent}
     return sensor
 
 
