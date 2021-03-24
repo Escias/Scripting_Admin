@@ -1,5 +1,16 @@
 import psutil
 import datetime
+import socket
+from getmac import get_mac_address as gma
+
+
+def get_ip_client():
+    '''
+
+    :return:
+    '''
+    ip_client = gma()
+    return ip_client
 
 
 def get_cpu_info():
@@ -9,7 +20,7 @@ def get_cpu_info():
     '''
     cpu = {'cpu_percent': psutil.cpu_percent(interval=1),
            'cpu_count': psutil.cpu_count(),
-           'cpu_frequency': psutil.cpu_freq()}
+           'cpu_frequency': psutil.cpu_freq().current}
     return cpu
 
 
@@ -18,7 +29,7 @@ def get_ram_info():
 
     :return:
     '''
-    ram = {'ram_usage': psutil.virtual_memory()}
+    ram = {'ram_usage': psutil.virtual_memory().percent}
     return ram
 
 
@@ -28,7 +39,7 @@ def get_disk_info():
     :return:
     '''
     disk = {'disk_partitions': psutil.disk_partitions(),
-            'disk_usage': psutil.disk_usage('/')}
+            'disk_usage': psutil.disk_usage('/').percent}
     return disk
 
 
