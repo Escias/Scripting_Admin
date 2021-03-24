@@ -1,5 +1,6 @@
 import psutil
 import datetime
+import socket
 
 
 def get_cpu_info():
@@ -46,3 +47,13 @@ def get_sensors_info():
 def get_system_info():
     system = {'system_boot_time': datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%Y-%m-%d %H:%M:%S")}
     return system
+
+
+def get_ip_client():
+    '''
+
+    :return:
+    '''
+    host = socket.gethostname()
+    ip_client = socket.gethostbyname(host)
+    return ip_client
