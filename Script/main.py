@@ -1,22 +1,33 @@
-from Script.Cours.base64 import string_to_list, to_ascii, to_binary, frame_list, list_to_string, bloc, last_bloc, \
-    to_decimal, to_base64, multiple_4
+from Script.Util.system_info import get_cpu_info, get_ram_info, get_disk_info, get_sensors_info, get_network_info, \
+    get_system_info, get_ip_client
 
 
 def main():
-    pass
+    '''
+    Main function of application
+    :return: None
+    '''
+    ip_client = get_ip_client()
+    cpu_info = get_cpu_info()
+    ram_info = get_ram_info()
+    disk_info = get_disk_info()
+    network_info = get_network_info()
+    sensors_info = get_sensors_info()
+    system_info = get_system_info()
+    print(ip_client)
+    for value in cpu_info:
+        print('{} : {}'.format(value, cpu_info[value]))
+    for value in ram_info:
+        print('{} : {}'.format(value, ram_info[value]))
+    for value in disk_info:
+        print('{} : {}'.format(value, disk_info[value]))
+    for value in network_info:
+        print('{} : {}'.format(value, network_info[value]))
+    for value in sensors_info:
+        print('{} : {}'.format(value, sensors_info[value]))
+    for value in system_info:
+        print('{} : {}'.format(value, system_info[value]))
 
 
 if __name__ == '__main__':
-    print('Enter a string :')
-    srt = input()
-    to_list = string_to_list(srt)
-    list_ascii = to_ascii(to_list)
-    list_binary = to_binary(list_ascii)
-    frame = frame_list(list_binary)
-    to_string = list_to_string(frame)
-    bloc = bloc(to_string, 6)
-    lbloc = last_bloc(bloc)
-    list_decimal = to_decimal(lbloc)
-    list_base64 = to_base64(list_decimal)
-    str_base64 = list_to_string(list_base64)
-    multiple_4(str_base64)
+    main()
