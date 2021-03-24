@@ -1,5 +1,6 @@
 import psutil
 import datetime
+import platform
 import socket
 from getmac import get_mac_address as gma
 
@@ -18,8 +19,16 @@ def get_cpu_info():
     Get cpu information
     :return: dictionary with cpu informations
     '''
+    if get_system_os() == "Windows":
+        temperature = "Not Supported"
+    elif get_system_os() == "Linux":
+        temperature = psutil.sensors_temperatures(fahrenheit=False)
+    else:
+        print("[WARN] Cannot access temperature!")
+
     cpu = {'cpu_percent': psutil.cpu_percent(interval=1),
            'cpu_count': psutil.cpu_count(),
+           'cpu_temperature': temperature,
            'cpu_frequency': psutil.cpu_freq().current}
     return cpu
 
@@ -75,3 +84,8 @@ def get_system_info():
     '''
     system = {'system_boot_time': datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%Y-%m-%d %H:%M:%S")}
     return system
+
+
+def get_system_os():
+    platform.system()
+    return platform.system()
