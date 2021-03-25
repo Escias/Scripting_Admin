@@ -7,6 +7,7 @@ from Script.Util.system_info import get_cpu_info, get_ram_info, get_disk_info, g
 def main():
     '''
     Main function of application
+    Call function to get system data and send to database
     :return: None
     '''
     cpu_info = get_cpu_info()
@@ -26,5 +27,6 @@ def main():
 if __name__ == '__main__':
     main()
     scheduler = BlockingScheduler()
-    scheduler.add_job(main, 'interval', seconds=5)
+    # internal is set to 10 seconds to leave enough time to the script to send data to influxdb
+    scheduler.add_job(main, 'interval', seconds=10)
     scheduler.start()

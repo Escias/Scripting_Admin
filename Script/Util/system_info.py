@@ -16,8 +16,6 @@ def get_cpu_info():
         temperature = psutil.sensors_temperatures(fahrenheit=False)
     else:
         temperature = ''
-        print('[WARN] Cannot access temperature!')
-
     cpu = {'cpu_percent': psutil.cpu_percent(interval=1),
            'cpu_frequency': psutil.cpu_freq().current}
     if temperature != "":
@@ -87,11 +85,23 @@ def get_mac_address():
 
 
 def add_before_in_string(srt, insert, to_replace):
+    '''
+    Insert a value before specified value in string
+    :param srt: string to modify
+    :param insert: value to insert
+    :param to_replace: value to replace
+    :return: modified string
+    '''
     srt = srt.replace(to_replace, insert + to_replace)
     return srt
 
 
 def format_uptime(uptime):
+    '''
+    Change format of date to fit with influxDB
+    :param uptime: date to format
+    :return: formatted date
+    '''
     time = uptime.split(':')
     new_uptime = '{}H{}m{}s'.format(time[0], time[1], time[2])
     return new_uptime
