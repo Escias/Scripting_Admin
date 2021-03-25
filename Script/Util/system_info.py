@@ -20,7 +20,7 @@ def get_cpu_info():
 
     cpu = {'cpu_percent': psutil.cpu_percent(interval=1),
            'cpu_frequency': psutil.cpu_freq().current}
-    if temperature!="":
+    if temperature != "":
         cpu["cpu_temperature"] = temperature
     return cpu
 
@@ -67,9 +67,11 @@ def get_system_info():
     '''
     s = str(datetime.datetime.now())[:-7]
     d = datetime.datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
-    uptime = str(datetime.timedelta(seconds=time.mktime(d.timetuple()) - psutil.boot_time()))
-    uptime = add_before_in_string(uptime, '\\', ':')
-    system = {'system_uptime': str('"{}"'.format(uptime))}
+    uptime = float(time.mktime(d.timetuple()) - psutil.boot_time())
+    # uptime = uptime.replace(' ', '')
+    # uptime = uptime.replace(',', '')
+    # uptime = format_uptime(uptime)
+    system = {'system_uptime': uptime}
     return system
 
 
@@ -83,10 +85,16 @@ def get_mac_address():
     Get mac address
     :return: mac address
     '''
-    address = add_before_in_string(str('"{}"'.format(gma())), '\\', ':')
+    address = gma().replace(':', '')
     return address
 
 
 def add_before_in_string(srt, insert, to_replace):
     srt = srt.replace(to_replace, insert + to_replace)
     return srt
+
+
+def format_uptime(uptime):
+    time = uptime.split(':')
+    new_uptime = '{}H{}m{}s'.format(time[0], time[1], time[2])
+    return new_uptime
