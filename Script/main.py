@@ -1,5 +1,6 @@
+from Script.Util.database import iterate_for_database
 from Script.Util.system_info import get_cpu_info, get_ram_info, get_disk_info, get_network_info, \
-    get_system_info
+    get_system_info, get_mac_address
 
 
 def main():
@@ -12,16 +13,13 @@ def main():
     disk_info = get_disk_info()
     network_info = get_network_info()
     system_info = get_system_info()
-    for value in cpu_info:
-        print('{} : {}'.format(value, cpu_info[value]))
-    for value in ram_info:
-        print('{} : {}'.format(value, ram_info[value]))
-    for value in disk_info:
-        print('{} : {}'.format(value, disk_info[value]))
-    for value in network_info:
-        print('{} : {}'.format(value, network_info[value]))
-    for value in system_info:
-        print('{} : {}'.format(value, system_info[value]))
+    mac_address = get_mac_address()
+    info = [cpu_info,
+            ram_info,
+            disk_info,
+            network_info,
+            system_info]
+    iterate_for_database(info, mac_address)
 
 
 if __name__ == '__main__':

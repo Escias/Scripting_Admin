@@ -11,6 +11,12 @@ client = InfluxDBClient(url=os.getenv('URL'), token=token)
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
 
+def iterate_for_database(info, address):
+    for data in info:
+        for value in data:
+            send_info_to_DB('device', address, value, data[value])
+
+
 def send_info_to_DB(category, host, value_type, value):
     data = '{},host={} {}={}'.format(category, host, value_type, value)
     write_api.write(bucket, org, data)
