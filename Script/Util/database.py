@@ -12,9 +12,11 @@ write_api = client.write_api(write_options=SYNCHRONOUS)
 
 
 def iterate_for_database(info, address):
+    print(address)
     for data in info:
         for value in data:
-            send_info_to_DB('device', address, value, data[value])
+            print('{} : {}'.format(value, data[value]))
+            # send_info_to_DB('device', address, value, data[value])
 
 
 def send_info_to_DB(category, host, value_type, value):

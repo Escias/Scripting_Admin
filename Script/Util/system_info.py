@@ -68,6 +68,7 @@ def get_system_info():
     s = str(datetime.datetime.now())[:-7]
     d = datetime.datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
     uptime = str(datetime.timedelta(seconds=time.mktime(d.timetuple()) - psutil.boot_time()))
+    uptime = add_before_in_string(uptime, '\\', ':')
     system = {'system_uptime': str('"{}"'.format(uptime))}
     return system
 
@@ -82,5 +83,10 @@ def get_mac_address():
     Get mac address
     :return: mac address
     '''
-    mac_address = gma()
-    return str('"{}"'.format(mac_address))
+    address = add_before_in_string(str('"{}"'.format(gma())), '\\', ':')
+    return address
+
+
+def add_before_in_string(srt, insert, to_replace):
+    srt = srt.replace(to_replace, insert + to_replace)
+    return srt
