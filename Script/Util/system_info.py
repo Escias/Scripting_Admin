@@ -68,9 +68,6 @@ def get_system_info():
     s = str(datetime.datetime.now())[:-7]
     d = datetime.datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
     uptime = float(time.mktime(d.timetuple()) - psutil.boot_time())
-    # uptime = uptime.replace(' ', '')
-    # uptime = uptime.replace(',', '')
-    # uptime = format_uptime(uptime)
     system = {'system_uptime': uptime}
     return system
 
