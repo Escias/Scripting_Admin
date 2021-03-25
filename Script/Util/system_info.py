@@ -19,8 +19,9 @@ def get_cpu_info():
         print('[WARN] Cannot access temperature!')
 
     cpu = {'cpu_percent': psutil.cpu_percent(interval=1),
-           'cpu_temperature': temperature,
            'cpu_frequency': psutil.cpu_freq().current}
+    if temperature!="":
+        cpu["cpu_temperature"] = temperature
     return cpu
 
 
