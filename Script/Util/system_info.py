@@ -16,7 +16,6 @@ def get_cpu_info():
         temperature = psutil.sensors_temperatures(fahrenheit=False)
     else:
         temperature = ''
-        print('[WARN] Cannot access temperature!')
 
     cpu = {'cpu_percent': psutil.cpu_percent(interval=1),
            'cpu_frequency': psutil.cpu_freq().current}

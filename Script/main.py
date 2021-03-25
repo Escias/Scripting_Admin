@@ -26,5 +26,5 @@ def main():
 if __name__ == '__main__':
     main()
     scheduler = BlockingScheduler()
-    scheduler.add_job(main, 'interval', seconds=5)
+    scheduler.add_job(main, 'interval', seconds=10)
     scheduler.start()
