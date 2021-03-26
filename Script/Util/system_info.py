@@ -71,6 +71,10 @@ def get_system_info():
 
 
 def get_system_os():
+    '''
+    Get system OS (Linux = Linux, Windows = Windows, MacOS = Darwin)
+    :return:
+    '''
     platform.system()
     return platform.system()
 
